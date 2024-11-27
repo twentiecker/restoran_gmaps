@@ -42,16 +42,12 @@ service = Service(ChromeDriverManager().install())
 # initiate driver with WebDriverManager dan service
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-# open google maps
-driver.get("https://www.google.com/maps")
+# open google maps with lat and long
+lat = -6.1669374
+long = 106.8302336
+url = f"https://www.google.com/maps/search/restoran/@{lat},{long},15z"
+driver.get(url)
 time.sleep(2)  # Tunggu sejenak hingga halaman termuat
-
-# input keyword
-search_box = driver.find_element(By.ID, "searchboxinput")
-time.sleep(2)
-search_box.send_keys("restoran jakarta")  # Ganti dengan kata kunci yang diinginkan
-search_box.send_keys(Keys.RETURN)
-time.sleep(5)  # Tunggu sejenak hingga hasil pencarian muncul
 
 # element scroll
 el_scroll = driver.find_elements(
